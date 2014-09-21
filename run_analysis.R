@@ -6,20 +6,23 @@ col.names <- as.character(cols[,2])
 col.index <- as.numeric(cols[,1])
 activity_labels <- read.table("activity_labels.txt")
 
-#test set
-
+#read test files
 X_test <- read.table("test/X_test.txt")
 y_test <- read.table("test/y_test.txt")
 subject_test <- read.table("test/subject_test.txt")
+
+#create test set
 X.test <- X_test[,col.index]
 colnames(X.test) <- col.names
 X.test$activity <- as.character(activity_labels[match(c(y_test[,1]), c(activity_labels[,1])) ,2])
 X.test$subject <- as.numeric(subject_test[, 1])
 
-#train set
+#read train files
 X_train <- read.table("train/X_train.txt")
 y_train <- read.table("train/y_train.txt")
 subject_train <- read.table("train/subject_train.txt")
+
+#create train set
 X.train <- X_train[,col.index]
 colnames(X.train) <- col.names
 X.train$activity <- as.character(activity_labels[match(c(y_train[,1]), c(activity_labels[,1])) ,2])
